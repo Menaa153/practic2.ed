@@ -37,6 +37,8 @@ data = [["Mike", 1105], ["Rob", 750], ["Paul", 720], ["Ana", 660], ["Rose", 500]
 data2 = [1105,750,720,660,500,500,510,510]
 data3 = [888, 100, 900, 500, 600, 200, 780, 100]
 
+len(data)
+
 usuarios = [
     [69086825, "McLovin", "06-03-1981", "Hawaii", "Avenida Sur #10-75 Poblado Medellin", 1003291028, "mclovin.ejemplo@unal.edu.co"],
     [1000000000, "OVIDIO", "09-11-2000", "Colon", "Calle 2 #84b 63-11 robledo Medellin", 12345643, "marta.ejemplo@unal.edu.co"],
