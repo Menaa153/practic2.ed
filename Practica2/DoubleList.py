@@ -21,6 +21,12 @@ class DoubleList:
     def last(self):
         return self.Tail
     
+    def __iter__(self):
+        current = self.Head
+        while current:
+            yield current.getData()  # Utiliza el método getData() para obtener los datos del nodo actual
+            current = current.getNext()
+    
     def append(self, Data):
         new_node = DoubleNode(Data)
         if self.Head is None:
@@ -99,7 +105,7 @@ class DoubleList:
             nodo.setNext(None)
             nodo.setPrev(None)
             self.Size -= 1
-            return e
+            #return e
     
     
     def search_node(self, target_Data):
@@ -166,19 +172,12 @@ class DoubleList:
             else:
                 temp = temp.getNext()
     
-    
-    
-    
-    
     #imprimir lista
     def display(self):
         current = self.Head 
         while current:
             print(current.getData())
             current = current.getNext()
-    
-    
-    
     
     
     #metodos para mergesort
@@ -216,8 +215,7 @@ class DoubleList:
         sorted_list = self.merge_linked_lists(left_half, right_half)
         
         return sorted_list
-
-
+    
     def merge_linked_lists(self, left, right):
         # Combina dos listas ordenadas y devuelve la lista combinada
         merged = DoubleList()
@@ -241,4 +239,37 @@ class DoubleList:
             right_ptr = right_ptr.Next
             
         return merged
+    
+    
+    def cambiar_contraseña(self, empleado, nueva_password):
+        nodo_actual = self.Head
+        while nodo_actual:
+            datos_empleado = nodo_actual.getData().split()
+            if len(datos_empleado) == 3:
+                ci, password, rol = datos_empleado
+                if empleado == ci and rol == "empleado":
+                    datos_empleado[1] = nueva_password
+                    nodo_actual.setData(" ".join(datos_empleado))
+                    return True
+            nodo_actual = nodo_actual.getNext()
+        return False
 
+
+"""# Crear la lista doble
+lista = DoubleList()
+# Leer datos desde el archivo y agregarlos a la lista doble
+with open("Practica2\Archivos proyecto\Password.txt", "r") as archivo:
+    lineas = archivo.readlines()
+    for linea in lineas:
+        lista.addFirst(linea.strip())
+
+# Modificar la contraseña de un empleado (suponiendo que eres administrador)
+empleado_a_modificar = "1007748337"
+nueva_password = "nueva_password"
+if lista.cambiar_contraseña(empleado_a_modificar, nueva_password):
+    print("Contraseña modificada con éxito.")
+else:
+    print("El empleado no fue encontrado o no eres administrador.")
+
+# Imprimir la lista
+lista.display2()"""

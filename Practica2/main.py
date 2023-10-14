@@ -1,23 +1,43 @@
 
+from Acciones import Actions
+from DoubleList import DoubleList
+from ListSimple import ListSimple
+from QueueQueue import Queue
+from StackList import StackList
 
 def main():
-    registro_usuarios = RegistroUsuarios(capacidad_maxima=8)
-    registro_usuarios.leerDatos()
+    
+    
+    print("Bienvenido a la Practica 2 de ED\n")
+    
+    while True:
+        cedula = input("Digite su numero de Cedula: ")
+        password = input("Digite su contraseña: ")
+        
+        validar = Actions.verificar_credenciales(cedula, password)
+        if validar:
+            print(f"Acceso concedido como {validar}.")
+            
+            break
+        else:
+            print("Acceso denegado. Credenciales incorrectas. Intente nuevamente")
+    
     
     while True:
         
         print("\nMenú:")
-        print("1. Agregar Usuario")
-        print("2. Buscar Usuario")
-        print("3. Eliminar Usuario")
-        print("4. Guardar Usuario(s) en CSV")
-        print("5. Mostrar Usuarios")
+        print("1. Revisar bandeja de entrada")
+        print("2. Ver mensajes leidos")
+        print("3. Mensaje de borradores")
+        print("4. Enviar mensaje")
+        print("5. Guardar datos")
         print("6. Salir")
         
         opcion = input("Seleccione una opción: ")
         
         if opcion == "1":
-            usuarios = registro_usuarios.agregar_usuario()
+            Actions.leerdatosoptimo2(cedula)
+            #Actions.mostrar_mensajes()
             
         elif opcion == "2":
             id = int(input('Ingrese el ID del Usuario a buscar: '))
