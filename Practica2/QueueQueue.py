@@ -34,15 +34,15 @@ class Queue:
             yield current.getData()  # Utiliza el método getData() para obtener los datos del nodo actual
             current = current.getNext()
 
-q = Queue()
+"""q = Queue()
 q.enqueue("a")
 q.enqueue("b")
 q.enqueue("c")
 print(q.first())
-elemento = q .dequeue()
+elemento = q.dequeue()
 
 print("Elemento desencolado:", elemento)
 print("Tipo de elemento:", type(elemento))
 print(q.dequeue())
 print(q.dequeue())
-print(q.dequeue())
+print(q.dequeue())"""

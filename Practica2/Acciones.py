@@ -3,10 +3,8 @@ from DoubleList import DoubleList
 from ListSimple import ListSimple
 from QueueQueue import Queue
 from StackList import StackList
-
+import datetime
 class Actions:
-    
-
     
     def leerDatos():
         
@@ -18,18 +16,7 @@ class Actions:
             for linea in lineas:
                 Password.addFirst(linea.strip())
         
-        return Password #.display(), Empleados.display()
-        
-        """with open("Practica2\Archivos proyecto\Empleados.txt", "r") as archivo:
-            for linea in archivo:
-                partes = linea.strip().split()  # Dividir la línea por espacios
-                if len(partes) == 3:
-                    cedula, clave, rol = partes
-                    if identificacion == cedula and contraseña == clave:
-                        return rol
-        return None"""
-    
-    
+        return Password
     
     def agregar_usuario(self):
         # Se verifica que haya espacio para agregar un usuario
@@ -81,11 +68,7 @@ class Actions:
                 return i # Devuelve el usuario si se encuentra
         return None # Devuelve None solo si no se encuentra 
     
-    def cambiar_contraseña(self, id):
-        for i in self._usuarios:
-            if i._id ==id:
-                newPassw = input("Ingrese la nueva contraseña: ")
-                i.id == newPassw
+    
     def eliminar_usuario(self, id):
         usuario = self.buscar_usuario(id)
         if usuario:
@@ -96,32 +79,7 @@ class Actions:
             print("No se encontró un usuario con esa identificación.")
     
     
-    def leerdatosoptimo():
-        ccempleados=[]
-        ext = ["B", "BA", "ML"]
-        with open("Practica2\Archivos proyecto\Empleados.txt", "r") as archivo:
-            for linea in archivo:
-                info = linea.strip().split(',')
-                ccempleados.append(info[1])
-        
-        
-        
-        for usuario in ccempleados:
-            for extension in ext:
-                archivo_path = f"C:/Users/SEGATOP/Documents/Estructura de datos/Practica2/Empleados/{usuario}{extension}.txt"
-                try:
-                    with open(archivo_path, "r") as archivo:
-                        lineas = archivo.readlines()
-                        # Procesa las líneas del archivo como desees
-                        for linea in lineas:
-                            pass
-                            # Haz algo con las líneas, por ejemplo, almacénalas en una estructura de datos
-                        print(f"ARCHIVO {usuario}{extension} LEIDO")
-                except FileNotFoundError:
-                    # Maneja el caso en el que el archivo no existe
-                    print(f"El archivo {usuario}{extension} no existe.")
-        
-
+    
     def verificar_credenciales(identificacion, contraseña):
         with open("Practica2\Archivos proyecto\Password.txt", "r") as archivo:
             for linea in archivo:
@@ -133,6 +91,7 @@ class Actions:
         return None
 
     def lecturadatos():
+        
         # Crear una instancia de la lista doble
         bandeja_de_entrada = DoubleList()
         mensajes_leidos = Queue()
@@ -165,6 +124,7 @@ class Actions:
                 # Convierte data a una lista si no lo es
                 dataa = list(data)
                 archivo.write(','.join(dataa) + '\n')
+                
 
 
     def mostrar_mensajes(bandeja_de_entrada, mensajes_leidos):
@@ -190,7 +150,7 @@ class Actions:
         while True:
             try:
                 seleccion = int(input("Ingrese el número del mensaje que desea ver (0 para salir): "))
-
+                
                 if seleccion == 0:
                     break  # El usuario quiere salir
                 elif 1 <= seleccion <= len(mensajes):
@@ -199,14 +159,13 @@ class Actions:
                     print(f"Fecha: {fecha}\nAsunto: {asunto}\nRemitente: {remitente}\nMensaje: {mensaje}\n")
                     
                     creardat= mensajes[seleccion-1]
-                    #print(creardat)
+                    
                     msmremo = bandeja_de_entrada.search_node(creardat)
                     
                     
                     bandeja_de_entrada.remove(msmremo)
                     mensajes_leidos.enqueue(msmremo)
                     mensajes_leidos.display()
-                
 
                     print("Mensaje marcado como leído y movido a mensajes leídos.")
                     break
@@ -214,6 +173,7 @@ class Actions:
                     print("Número de mensaje no válido. Intente nuevamente.")
             except ValueError:
                 print("Entrada no válida. Intente nuevamente.")
+            
             # Actualizar current para el siguiente ciclo del bucle
             current = bandeja_de_entrada.first()
     
@@ -244,3 +204,45 @@ class Actions:
                 print(f"El archivo {ccempleado}{extension} no existe.")
         
         return BD, BA, ML
+    
+    def leerBADestinatario(cedula):
+        BAA = DoubleList()
+        archivo_path = f"C:/Users/SEGATOP/Documents/Estructura de datos/Practica2/Empleados/{cedula}BA.txt"
+        with open(archivo_path, "r") as archivo:
+            lineas = archivo.readlines()
+            for linea in lineas:
+                BAA.addLast(linea.strip().split(','))
+            print(f"ARCHIVO {cedula}BA LEIDO")
+        return BAA
+    
+    
+    
+    def RedactarMSM():
+        ccuserdest = input("Ingrese CC del destinatario: ")
+        asuntomsm = input("Asunto de mensaje: ")
+        mensaje = input("Mensaje a enviar: ")
+        while True:
+        
+            print("\nMenú:")
+            print("1. Guardar como borrador")
+            print("2. Descartar")
+            print("3. Enviar")
+            print("4. Salir")
+            
+            opcion = input("¿Que deseas hacer?: ")
+            
+            if opcion == "1":
+                pass
+                
+            elif opcion == "2":
+                pass
+            
+            elif opcion == "3":
+                BADest = Actions.leerBADestinatario(ccuserdest)
+                fechaENV = datetime.datetime.now().strftime("%d-%m-% %H:%M:%S")
+                BADest.addFirst([fechaENV, "Ana Isabel", asuntomsm, mensaje])
+                
+                BADest.display()
+                
+            else:
+                print("Opción no válida. Intente de nuevo.")

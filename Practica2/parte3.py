@@ -30,7 +30,7 @@ def cambiar_contra():
             print("El empleado no fue encontrado o no eres administrador.")
 
         # Imprimir la lista
-        passwordd.display2()
+        passwordd.display()
 
 
 cambiar_contra()

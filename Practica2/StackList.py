@@ -10,7 +10,7 @@ class StackList:
         return self.data.getSize()
     
     def isEmpty(self):
-        return self.size==0
+        return self.data.Size==0
     
     def push(self, data):
         self.data.addFirst(data)
@@ -22,6 +22,12 @@ class StackList:
         if not self.isEmpty():
             return self.data.first().getData()
         else: return None
+    
+    def display(self):
+        current = self.data.Head
+        while current:
+            print(current.getData())
+            current = current.getNext()
 
 """# Ejemplo de uso:
 stack = StackList()  # Crear una pila con capacidad 5
